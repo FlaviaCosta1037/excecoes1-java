@@ -1,5 +1,7 @@
 package model.entities;
 
+import model.excecoes.Excecoes;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
@@ -11,7 +13,10 @@ public class Reserva {
 
     private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyy");
 
-    public Reserva(Integer roomNumber, Date checkin, Date checkout) {
+    public Reserva(Integer roomNumber, Date checkIn, Date checkOut) throws Excecoes {
+        if (!checkOut.after(checkIn)) {
+            throw new Excecoes("A data do checkout tem que ser posterior a data do Checkin! ");
+        }
         this.numeroQuarto = roomNumber;
         this.checkin = checkin;
         this.checkout = checkout;
@@ -44,18 +49,17 @@ public class Reserva {
     }
 
     //Método para atualização das datas
-    public String atualizacaoDatas(Date checkIn, Date checkOut){
+    public void atualizacaoDatas(Date checkIn, Date checkOut) throws Excecoes{
         Date agora = new Date();
         if (checkIn.before(agora) || checkOut.before(agora)) {
-            return "As reservas devem ser com datas futuras! ";
+            throw new Excecoes("As reservas devem ser com datas futuras! ");
         }
         if (!checkOut.after(checkIn)) {
-            return "A data do checkout tem que ser posterior a data do Checkin! ";
+            throw new Excecoes("A data do checkout tem que ser posterior a data do Checkin! ");
         }
         this.checkin = checkin;
         this.checkout = checkout;
 
-        return null; //O retorno nullo é porque o método não deu nenhum erro.
     }
 
     @Override
