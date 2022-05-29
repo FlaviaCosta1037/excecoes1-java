@@ -32,6 +32,12 @@ public class ProgramaBanco {
             double saque = in.nextDouble();
             usuario.saque(saque);
             System.out.println(usuario);
+
+            //Realizado o teste para identificar se a opção e o método de depósito está funcionando;
+            System.out.print("Realize um deposito: ");
+            double deposito = in.nextDouble();
+            usuario.deposito(deposito);
+            System.out.println(usuario);
         }
         catch (Excecoes e){
             System.out.println(e.getMessage());
