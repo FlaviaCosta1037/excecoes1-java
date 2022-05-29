@@ -1,5 +1,5 @@
 package aplicacao;
-
+//VERSÃO MUITO RUIM PORQUE A LÓGICA DE PROGRAMAÇÃO DE VALIDAÇÃO DA RESERVA ESTÁ NO PROGRAMA PRINCIPAL
 
 import model.entities.Reserva;
 
