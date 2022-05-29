@@ -44,9 +44,18 @@ public class Reserva {
     }
 
     //Método para atualização das datas
-    public void atualizacaoDatas(Date checkin, Date checkout){
+    public String atualizacaoDatas(Date checkIn, Date checkOut){
+        Date agora = new Date();
+        if (checkIn.before(agora) || checkOut.before(agora)) {
+            return "As reservas devem ser com datas futuras! ";
+        }
+        if (!checkOut.after(checkIn)) {
+            return "A data do checkout tem que ser posterior a data do Checkin! ";
+        }
         this.checkin = checkin;
         this.checkout = checkout;
+
+        return null; //O retorno nullo é porque o método não deu nenhum erro.
     }
 
     @Override
